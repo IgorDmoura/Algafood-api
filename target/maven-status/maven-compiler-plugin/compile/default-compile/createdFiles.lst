@@ -1,0 +1,8 @@
+com\algaworks\algafood\modelo\Cliente.class
+com\algaworks\algafood\NotificacaoConfig.class
+com\algaworks\algafood\notificacao\Notificador.class
+com\algaworks\algafood\MeuPrimeiroController.class
+com\algaworks\algafood\notificacao\NotificadorEmail.class
+com\algaworks\algafood\AlgafoodApiApplication.class
+com\algaworks\algafood\service\AtivacaoClienteService.class
+com\algaworks\algafood\ServiceConfig.class
