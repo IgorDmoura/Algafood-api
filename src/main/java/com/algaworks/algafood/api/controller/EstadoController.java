@@ -58,12 +58,12 @@ public class EstadoController {
 	@PutMapping("/{estadoId}")
 	public ResponseEntity<Estado> atualizar(@PathVariable Long estadoId,
 			@RequestBody Estado estado){
-		Optional<Estado> estadoAtual = estadoRepository.findById(estadoId);
+		Estado estadoAtual = estadoRepository.findById(estadoId).orElse(null);
 		
-		if(estadoAtual.isPresent()) {
-			BeanUtils.copyProperties(estado, estadoAtual.get(),"id");
-			Estado estadoSalvo = cadastroEstado.salvar(estadoAtual.get());
-			return ResponseEntity.ok(estadoSalvo);
+		if(estadoAtual != null) {
+			BeanUtils.copyProperties(estado, estadoAtual,"id");
+			estadoAtual = cadastroEstado.salvar(estadoAtual);
+			return ResponseEntity.ok(estadoAtual);
 		}
 		return ResponseEntity.notFound().build();
 	}
