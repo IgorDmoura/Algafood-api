@@ -1,6 +1,7 @@
-package com.algaworks.algafood.domain.model;
+	package com.algaworks.algafood.domain.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -50,6 +54,16 @@ public class Restaurante {
 	@Embedded
 	@JsonIgnore
 	private Endereco endereco;
+	
+	@CreationTimestamp
+	@JsonIgnore
+	@Column(nullable = false, columnDefinition = "datetime")
+	private LocalDateTime dataCadastro;
+	
+	@UpdateTimestamp
+	@JsonIgnore
+	@Column(nullable = false, columnDefinition = "datetime")
+	private LocalDateTime dataAtualizacao;
 
 	public Long getId() {
 		return id;
@@ -98,5 +112,23 @@ public class Restaurante {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
+	public LocalDateTime getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDateTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public LocalDateTime getDataAtualizacao() {
+		return dataAtualizacao;
+	}
+
+	public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
+		this.dataAtualizacao = dataAtualizacao;
+	}
+	
+	
 
 }
