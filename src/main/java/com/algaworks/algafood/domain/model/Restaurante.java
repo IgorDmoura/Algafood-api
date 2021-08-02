@@ -1,4 +1,4 @@
-	package com.algaworks.algafood.domain.model;
+package com.algaworks.algafood.domain.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +22,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -41,7 +43,9 @@ public class Restaurante {
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	@JsonIgnoreProperties("hibernateLazyInitializer")
 	@JoinColumn(name = "cozinha_id", nullable = false)
 	private Cozinha cozinha;
 	
