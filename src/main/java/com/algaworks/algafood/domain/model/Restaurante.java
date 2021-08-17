@@ -43,14 +43,14 @@ public class Restaurante {
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne //(fetch = FetchType.LAZY)
+//	@JsonIgnoreProperties("hibernateLazyInitializer")
 	@JsonIgnore
-	@JsonIgnoreProperties("hibernateLazyInitializer")
 	@JoinColumn(name = "cozinha_id", nullable = false)
 	private Cozinha cozinha;
 	
 	@ManyToMany
-	@JsonIgnore
+    @JsonIgnore
 	@JoinTable(name = "restaurante_forma_pagamento",
 	joinColumns = @JoinColumn(name = "restaurante_id"),
 	inverseJoinColumns = @JoinColumn(name = "forma_pagamento_id"))
